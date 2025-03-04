@@ -1,0 +1,39 @@
+.stopwatch {
+  display: flex;
+  flex-direction: column;
+  height: 70vh;
+  width: 100%;
+  gap: 10px;
+}
+
+.btn-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  padding: 10px;
+}
+
+.laps-container {
+  max-height: 60%;
+  overflow-y: auto;
+  width: 100%;
+}
+
+.lap {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.start-btn {
+  background-color: green;
+}
+.pause-btn {
+  background-color: red;
+}
+.lap-btn {
+  background-color: teal;
+}
+.reset-btn {
+  background-color: red;
+}
