@@ -8,6 +8,8 @@ function Stopwatch() {
   const [running, setRunning] = useState(false);
 
   const formatTime = (time) => {
+    if (!time) return "00:00:00";
+   
     const minutes = Math.floor(time / 60000)
       .toString()
       .padStart(2, "0");
