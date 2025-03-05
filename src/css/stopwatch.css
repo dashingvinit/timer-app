@@ -1,39 +1,50 @@
-.stopwatch {
+.stopwatch-container {
   display: flex;
   flex-direction: column;
-  height: 70vh;
-  width: 100%;
-  gap: 10px;
-}
-
-.btn-container {
-  display: flex;
+  justify-content: start;
   align-items: center;
-  justify-content: space-evenly;
-  padding: 10px;
+  padding: 20px;
+  border-radius: 0.5rem;
+  gap: 20px;
+  background-color: var(--timer-warning-bg);
+  max-height: 80vh;
 }
 
 .laps-container {
-  max-height: 60%;
-  overflow-y: auto;
+  border-radius: 10px;
+  min-height: 70%;
   width: 100%;
+  overflow-y: auto;
+  font-family: Arial, sans-serif;
+  color: black;
 }
 
 .lap {
-  display: flex;
-  justify-content: space-evenly;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
   align-items: center;
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
 }
 
-.start-btn {
-  background-color: green;
+.header {
+  background: #333;
+  color: white;
+  font-weight: bold;
+  text-transform: uppercase;
 }
-.pause-btn {
-  background-color: red;
+
+.even {
+  background: #f9f9f9;
 }
-.lap-btn {
-  background-color: teal;
+
+.odd {
+  background: #ffffff;
 }
-.reset-btn {
-  background-color: red;
+
+.lap h3,
+.lap p {
+  text-align: center;
+  margin: 0;
+  font-size: 14px;
 }

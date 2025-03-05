@@ -1,0 +1,29 @@
+.countdown-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px 10px;
+  border-radius: 0.5rem;
+  gap: 20px;
+}
+
+.time-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.blink {
+  animation: blink-animation 1s infinite alternate;
+}
+
+@keyframes blink-animation {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.3;
+  }
+}

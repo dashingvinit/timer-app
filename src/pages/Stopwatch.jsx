@@ -1,100 +1,52 @@
-import { useState, useEffect, useInterval } from "react";
-import { Laps } from "../components/stopwatch";
+import { useState, useCallback } from "react";
+import { Timer, Laps, SaveLap } from "../components/stopwatch";
+import Buttons from "../components/Buttons";
+import Modal from "../components/Modal";
 import "../css/stopwatch.css";
 
 function Stopwatch() {
   const [time, setTime] = useState(0);
   const [laps, setLaps] = useState([]);
   const [running, setRunning] = useState(false);
+  const [modal, setModal] = useState(false);
 
-  const formatTime = (time) => {
-    if (!time) return "00:00:00";
-   
-    const minutes = Math.floor(time / 60000)
-      .toString()
-      .padStart(2, "0");
-    const seconds = Math.floor((time % 60000) / 1000)
-      .toString()
-      .padStart(2, "0");
-    const milliseconds = ((time % 1000) / 10).toString().padStart(2, "0");
-    return `${minutes}:${seconds}:${milliseconds}`;
-  };
+  console.log("Stopwatch page re-rendered"); //caused times state
 
-  const onReset = () => {
+  const onReset = useCallback(() => {
     setTime(0);
+    // setModal(true);
     setLaps([]);
     setRunning(false);
+  }, []);
+
+  const onStart = () => {
+    setRunning(true);
   };
 
-  const onLap = () => {
+  const onLap = useCallback(() => {
     setLaps((laps) => [...laps, time]);
-  };
-
-  useEffect(() => {
-    let interval;
-    if (running) {
-      interval = setInterval(() => {
-        setTime((time) => time + 10);
-      }, 10);
-    }
-    return () => clearInterval(interval);
-  }, [running]);
-
-  const handleKeyPress = (event) => {
-    switch (event.key.toLowerCase()) {
-      case " ":
-        setRunning(!running);
-        break;
-
-      case "r":
-        onReset();
-        break;
-
-      case "l":
-        onLap();
-        break;
-
-      default:
-        break;
-    }
-  };
-
-  useEffect(() => {
-    window.addEventListener("keydown", handleKeyPress);
-    return () => {
-      window.removeEventListener("keydown", handleKeyPress);
-    };
-  }, [handleKeyPress]);
+  }, [time]); // causing button rerenders
 
   return (
-    <div>
-      <h1 className="title">Stopwatch</h1>
-      <div className="stopwatch">
-        <h1 className="time">{formatTime(time)}</h1>
-        <div className="btn-container">
-          {running ? (
-            <>
-              <button className="lap-btn" onClick={onLap}>
-                Lap
-              </button>
-              <button className="pause-btn" onClick={() => setRunning(false)}>
-                Pause
-              </button>
-            </>
-          ) : (
-            <>
-              <button className="start-btn" onClick={() => setRunning(true)}>
-                Start
-              </button>
-              <button className="reset-btn" onClick={onReset}>
-                Reset
-              </button>
-            </>
-          )}
+    <>
+      <div className="container">
+        <div className="stopwatch-container ">
+          <h1 className="title">Stopwatch</h1>
+          <Timer time={time} setTime={setTime} running={running} />
+          <Buttons
+            running={running}
+            setRunning={setRunning}
+            onLap={onLap}
+            onReset={onReset}
+            onStart={onStart}
+          />
+          <Laps laps={laps} />
         </div>
-        <Laps laps={laps} formatTime={formatTime} />
       </div>
-    </div>
+      <Modal open={modal}>
+        <SaveLap laps={laps} setLaps={setLaps} />
+      </Modal>
+    </>
   );
 }
 

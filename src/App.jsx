@@ -1,15 +1,13 @@
 import { BrowserRouter, Link } from "react-router-dom";
+import Layout from "./layout/Layout";
 import Pages from "./pages/_pages";
 
 function App() {
   return (
     <BrowserRouter>
-      <nav className='navbar'>
-        <Link to="/">Home</Link>
-        <Link to="/timer">Timer</Link>
-        <Link to="/stopwatch">Stopwatch</Link>
-      </nav>
-      <Pages />
+      <Layout>
+        <Pages />
+      </Layout>
     </BrowserRouter>
   );
 }
