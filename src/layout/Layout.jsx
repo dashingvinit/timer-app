@@ -1,5 +1,5 @@
 import Navbar from "./Navbar";
-import { ThemeProvider } from "./useThemeContext";
+import { ThemeProvider } from "../context/useThemeContext";
 
 function Layout({ children }) {
   return (

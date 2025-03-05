@@ -28,7 +28,11 @@ function Timer(props) {
 
   return (
     <>
-      <h1 className="title">{formatTime(time)}</h1>
+      <div className="time-container">
+        <h1 className="title">{formatTime(time)}</h1>
+        <h2>mn : sc : ms</h2>
+      </div>
+      {/* <h1 className="title">{formatTime(time)}</h1> */}
     </>
   );
 }

@@ -1,10 +1,9 @@
 import { useRef, useEffect } from "react";
+import { createPortal } from "react-dom";
 import "../css/modal.css";
 
 function Modal({ open, onClose, children }) {
   const ref = useRef(null);
-
-  if (!open) return null;
 
   if (!ref.current) ref.current = document.createElement("div");
 
@@ -24,11 +23,16 @@ function Modal({ open, onClose, children }) {
     };
   }, [open, onClose]);
 
-  return (
-    <div className="modal">
-      <button onClick={onClose}>Close</button>
-      <div>{children}</div>
-    </div>
+  if (!open) return null;
+
+  return createPortal(
+    <>
+      <div className="modal">
+        <button onClick={onClose}>Close</button>
+        <div>{children}</div>
+      </div>
+    </>,
+    ref.current
   );
 }
 

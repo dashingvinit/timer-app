@@ -1,15 +1,19 @@
 import { Routes, Route } from "react-router-dom";
-import Home from "./Home";
 import Countdown from "./Countdown";
 import Stopwatch from "./Stopwatch";
 
+import { StopwatchProvider } from "../context/useStopwatchContext";
+import { CountdownProvider } from "../context/useCountdownContext";
 function Pages() {
   return (
-    <Routes>
-      {/* <Route path="/" element={<Home />} /> */}
-      <Route path="/" element={<Countdown />} />
-      <Route path="/stopwatch" element={<Stopwatch />} />
-    </Routes>
+    <StopwatchProvider>
+      <CountdownProvider>
+        <Routes>
+          <Route path="/stopwatch" element={<Stopwatch />} />
+          <Route path="/" element={<Countdown />} />
+        </Routes>
+      </CountdownProvider>
+    </StopwatchProvider>
   );
 }
 

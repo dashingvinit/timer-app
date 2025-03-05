@@ -4,15 +4,15 @@
   justify-content: start;
   align-items: center;
   padding: 20px;
-  border-radius: 0.5rem;
-  gap: 20px;
+  border-radius: 0.75rem;
   background-color: var(--timer-warning-bg);
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
   max-height: 80vh;
+  /* margin: 0 auto; */
 }
 
 .laps-container {
   border-radius: 10px;
-  min-height: 70%;
   width: 100%;
   overflow-y: auto;
   font-family: Arial, sans-serif;
@@ -25,6 +25,15 @@
   align-items: center;
   padding: 10px;
   border-bottom: 1px solid #ddd;
+}
+
+.saved-laps {
+  height: 100%;
+  width: 100%;
+}
+
+.session {
+  display: flex;
 }
 
 .header {

@@ -1,50 +1,58 @@
-import { useState, useCallback } from "react";
-import { Timer, Laps, SaveLap } from "../components/stopwatch";
+import { useState } from "react";
+import { useStopwatch } from "../context/useStopwatchContext";
+
+import { Timer, Laps, SaveLap, StoredData } from "../components/stopwatch";
 import Buttons from "../components/Buttons";
 import Modal from "../components/Modal";
 import "../css/stopwatch.css";
 
 function Stopwatch() {
-  const [time, setTime] = useState(0);
-  const [laps, setLaps] = useState([]);
-  const [running, setRunning] = useState(false);
+  const { time, setTime, laps, setLaps, running, setRunning } = useStopwatch();
   const [modal, setModal] = useState(false);
+  const [data, setData] = useState(JSON.parse(localStorage.getItem("data")));
 
-  console.log("Stopwatch page re-rendered"); //caused times state
+  const onReset = () => {
+    if (laps.length > 0) {
+      setModal(true);
+    } else {
+      setLaps([]);
+      setRunning(false);
+      setTime(0);
+    }
+  };
 
-  const onReset = useCallback(() => {
-    setTime(0);
-    // setModal(true);
+  const onClose = () => {
+    setModal(false);
     setLaps([]);
     setRunning(false);
-  }, []);
+    setTime(0);
+  };
 
   const onStart = () => {
     setRunning(true);
   };
 
-  const onLap = useCallback(() => {
-    setLaps((laps) => [...laps, time]);
-  }, [time]); // causing button rerenders
-
   return (
     <>
       <div className="container">
-        <div className="stopwatch-container ">
+        <div className="stopwatch-container">
           <h1 className="title">Stopwatch</h1>
           <Timer time={time} setTime={setTime} running={running} />
           <Buttons
             running={running}
             setRunning={setRunning}
-            onLap={onLap}
+            onLap={() => setLaps([...laps, time])}
             onReset={onReset}
             onStart={onStart}
           />
           <Laps laps={laps} />
         </div>
+        <div>
+          <StoredData data={data} />
+        </div>
       </div>
-      <Modal open={modal}>
-        <SaveLap laps={laps} setLaps={setLaps} />
+      <Modal open={modal} onClose={onClose}>
+        <SaveLap laps={laps} onClose={onClose} setData={setData} />
       </Modal>
     </>
   );

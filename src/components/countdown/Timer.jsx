@@ -36,7 +36,7 @@ function Timer(props) {
       <h1 className={`title ${!running && remaining > 0 ? "blink" : ""}`}>
         {formatTime(remaining)}
       </h1>
-      <h2>hr: mins: sec</h2>
+      <h2>hr : min : sec</h2>
     </div>
   );
 }
