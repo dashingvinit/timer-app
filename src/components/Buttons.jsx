@@ -6,6 +6,7 @@ function Buttons(props) {
   const handleKeyPress = (event) => {
     switch (event.key.toLowerCase()) {
       case " ":
+        event.preventDefault();
         setRunning(!running);
         break;
 

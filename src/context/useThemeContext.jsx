@@ -30,7 +30,7 @@ const themes = {
 const ThemeContext = createContext();
 
 export const ThemeProvider = ({ children }) => {
-  const [theme, setTheme] = useState("light");
+  const [theme, setTheme] = useState("colorful");
 
   const applyTheme = (themeName) => {
     const selectedTheme = themes[themeName];

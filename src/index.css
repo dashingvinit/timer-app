@@ -2,17 +2,12 @@
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   font-weight: 400;
 
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-
-  --font-color: #000;
-  --bg-color: #fff;
-  --accent-color: #d1e8ff;
-  --timer-default-bg: #e0e0e0;
-  --timer-warning-bg: #ffcc00;
-  --timer-critical-bg: #ff4444;
+  --font-color: #212121;
+  --bg-color: #f0e68c;
+  --accent-color: #ee4941;
+  --timer-default-bg: #add8e6;
+  --timer-warning-bg: #ffa500;
+  --timer-critical-bg: #dc143c;
 }
 
 body {

@@ -28,8 +28,10 @@
 }
 
 .saved-laps {
-  height: 100%;
-  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 20px 0;
 }
 
 .session {

@@ -1,17 +1,19 @@
+import { useEffect } from "react";
+
 function Progress({ total, remaining, start, setStart }) {
   const playAudio = () => {
     const audio = new Audio("/finish.mp3");
     audio.play();
   };
 
-  console.log({ total, remaining, start, setStart });
+  const val = ((total - remaining) / total) * 100 || 0;
 
-  const val = (remaining / total) * 100 || 0;
-
-  if (val === 0 && start) {
-    playAudio();
-    setStart(false);
-  }
+  useEffect(() => {
+    if (val === 100 && start) {
+      playAudio();
+      setStart(false);
+    }
+  }, [val, start, setStart]);
 
   return (
     <div className="title">

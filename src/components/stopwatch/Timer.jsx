@@ -18,21 +18,21 @@ function Timer(props) {
 
   useEffect(() => {
     let interval;
+    console.log("rerendering");
     if (running) {
       interval = setInterval(() => {
         setTime((time) => time + 10);
       }, 10);
     }
     return () => clearInterval(interval);
-  }, [running]);
+  }, []);
 
   return (
     <>
       <div className="time-container">
         <h1 className="title">{formatTime(time)}</h1>
-        <h2>mn : sc : ms</h2>
+        <h2>min : sec : ms</h2>
       </div>
-      {/* <h1 className="title">{formatTime(time)}</h1> */}
     </>
   );
 }
