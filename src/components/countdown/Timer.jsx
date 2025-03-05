@@ -25,8 +25,12 @@ function Timer(props) {
     if (running)
       interval = setInterval(() => {
         const newValue = Math.max(0, time - Date.now());
+        localStorage.setItem("remaining", newValue);
         setRemaining(newValue);
-        if (newValue <= 0) setRunning(false);
+        if (newValue <= 0) {
+          setRunning(false);
+          localStorage.removeItem("remaining");
+        }
       }, 1000);
     return () => clearInterval(interval);
   }, [running, time]);

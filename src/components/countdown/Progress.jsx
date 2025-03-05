@@ -1,4 +1,4 @@
-function Progress({ total, remaining, start,setStart }) {
+function Progress({ total, remaining, start, setStart }) {
   const playAudio = () => {
     const audio = new Audio("/finish.mp3");
     audio.play();
@@ -6,7 +6,7 @@ function Progress({ total, remaining, start,setStart }) {
 
   console.log({ total, remaining, start, setStart });
 
-  const val = (remaining / total) * 100;
+  const val = (remaining / total) * 100 || 0;
 
   if (val === 0 && start) {
     playAudio();

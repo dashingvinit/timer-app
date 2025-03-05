@@ -30,10 +30,14 @@ export const CountdownProvider = ({ children }) => {
     }
   }, [hr, mins, secs, start]);
 
-  // useEffect(() => {
-  //   const prevRemaining = localStorage.getItem("remaining").
-  //   if (prevRemaining) setRemaining(prevRemaining);
-  // }, []);
+  useEffect(() => {
+    const prevRemaining = localStorage.getItem("remaining");
+    if (prevRemaining || prevRemaining > 0) {
+      setRemaining(Number(prevRemaining));
+      // setRunning(true);
+      // setStart(true);
+    }
+  }, []);
 
   const onStart = () => {
     if (remaining == 0) return;
