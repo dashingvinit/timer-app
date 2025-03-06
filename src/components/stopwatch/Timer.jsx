@@ -25,7 +25,7 @@ function Timer(props) {
       }, 10);
     }
     return () => clearInterval(interval);
-  }, []);
+  }, [running]);
 
   return (
     <>

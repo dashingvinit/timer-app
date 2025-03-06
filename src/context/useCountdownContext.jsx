@@ -13,22 +13,31 @@ export const CountdownProvider = ({ children }) => {
   const [secs, setSecs] = useState(0);
   const [bgColor, setBgColor] = useState("var(--timer-default-bg)");
 
+  const playAudio = () => {
+    const audio = new Audio("/finish.mp3");
+    audio.play();
+  };
+
   useEffect(() => {
     const secondsLeft = Math.floor(remaining / 1000);
-    if (secondsLeft > 90 || secondsLeft <= 0) {
+    if (secondsLeft <= 0 && start) {
+      playAudio();
+      setStart(false);
+    }
+    if (secondsLeft > 60 || secondsLeft <= 0) {
       setBgColor("var(--timer-default-bg)");
-    } else if (secondsLeft < 60) {
+    } else if (secondsLeft < 10) {
       setBgColor("var(--timer-critical-bg)");
-    } else if (secondsLeft < 90) {
+    } else if (secondsLeft < 60) {
       setBgColor("var(--timer-warning-bg)");
     }
   }, [remaining]);
 
   useEffect(() => {
-    if (!running) {
+    if (!running && !start) {
       setRemaining(hr * 3600000 + mins * 60000 + secs * 1000);
     }
-  }, [hr, mins, secs, start]);
+  }, [hr, mins, secs, start, running]);
 
   useEffect(() => {
     const prevRemaining = localStorage.getItem("remaining");

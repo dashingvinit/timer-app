@@ -1,23 +1,25 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { useCountdown } from "../../context/useCountdownContext";
 
-function Progress({ total, remaining, start, setStart }) {
-  const playAudio = () => {
-    const audio = new Audio("/finish.mp3");
-    audio.play();
-  };
+function Progress() {
+  const { remaining, hr, mins, secs } = useCountdown();
+  const [val, setVal] = useState(0);
 
-  const val = ((total - remaining) / total) * 100 || 0;
+  const total = hr * 3600000 + mins * 60000 + secs * 1000;
 
   useEffect(() => {
-    if (val === 100 && start) {
-      playAudio();
-      setStart(false);
+    if (total > 0) {
+      const elapsed = total - remaining; 
+      const percentage = Math.max(0, Math.min(100, (elapsed / total) * 100));
+      setVal(percentage);
+    } else {
+      setVal(0);
     }
-  }, [val, start, setStart]);
+  }, [total, remaining]);
 
   return (
     <div className="title">
-      <progress value={val} max={100} />
+      <progress value={val} max={100} className="progress-bar" />
     </div>
   );
 }

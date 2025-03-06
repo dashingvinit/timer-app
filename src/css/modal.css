@@ -3,11 +3,20 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+
+  color: white;
   background-color: #434343;
   padding: 2rem;
+  border: 1px solid rgb(255, 255, 255);
   border-radius: 20px;
-  border-width: 5px;
-  border-color: red;
+
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
   z-index: 1;
   width: 80%;
+}
+
+.modal button {
+  background-color: black;
 }

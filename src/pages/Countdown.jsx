@@ -5,8 +5,6 @@ import "../css/timer.css";
 
 function Countdown() {
   const {
-    start,
-    setStart,
     running,
     setRunning,
     time,
@@ -35,12 +33,7 @@ function Countdown() {
           setRemaining={setRemaining}
         />
 
-        <Progress
-          total={hr * 3600000 + mins * 60000 + secs * 1000}
-          remaining={remaining}
-          start={start}
-          setStart={setStart}
-        />
+        <Progress />
 
         <Input
           hr={hr}

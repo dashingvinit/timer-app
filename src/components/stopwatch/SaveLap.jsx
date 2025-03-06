@@ -1,3 +1,4 @@
+import Laps from "./Laps";
 function SaveLap({ laps, onClose, setData }) {
   const handleSave = () => {
     const savedLaps = localStorage.getItem("data")
@@ -12,12 +13,13 @@ function SaveLap({ laps, onClose, setData }) {
   return (
     <div className="p-4 bg-white rounded shadow-lg">
       <h2>Would you like to save?</h2>
-      <span>{JSON.stringify(laps, null, 2)}</span>
+      <Laps laps={laps} />
+
       <button
         onClick={handleSave}
         className="px-4 py-2 bg-blue-500 text-white rounded"
       >
-        Yes
+        <h3>Yes</h3>
       </button>
     </div>
   );

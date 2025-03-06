@@ -16,6 +16,11 @@
   align-items: center;
 }
 
+.progress-bar {
+  
+  transition: value 0.5s ease-in-out;
+}
+
 input {
   padding: 0.5;
   text-align: center;
