@@ -18,21 +18,21 @@ const initialState = {
 const reducer = (state, action) => {
   switch (action.type) {
     case "setStart":
-      return { ...state, start: action.playload };
+      return { ...state, start: action.payload };
     case "setRunning":
-      return { ...state, running: action.playload };
+      return { ...state, running: action.payload };
     case "setTime":
-      return { ...state, time: action.playload };
+      return { ...state, time: action.payload };
     case "setRemaining":
-      return { ...state, remaining: action.playload };
+      return { ...state, remaining: action.payload };
     case "setHr":
-      return { ...state, hr: action.playload };
+      return { ...state, hr: action.payload };
     case "setMins":
-      return { ...state, mins: action.playload };
+      return { ...state, mins: action.payload };
     case "setSecs":
-      return { ...state, secs: action.playload };
+      return { ...state, secs: action.payload };
     case "setBgColor":
-      return { ...state, bgColor: action.playload };
+      return { ...state, bgColor: action.payload };
     default:
       return state;
   }

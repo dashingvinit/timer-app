@@ -6,7 +6,7 @@ function StoredData({ data }) {
     <div className="saved-laps">
       <h2 className="title">Lap Sessions</h2>
       {data
-        .slice()
+        ?.slice()
         .reverse()
         .map((session, index) => (
           <div key={index} className="session">
