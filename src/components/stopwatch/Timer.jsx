@@ -17,15 +17,12 @@ function Timer(props) {
   };
 
   useEffect(() => {
-    let interval;
-    console.log("rerendering");
-    if (running) {
-      interval = setInterval(() => {
-        setTime((time) => time + 10);
-      }, 10);
-    }
+    if (!running) return;
+    const interval = setInterval(() => {
+      setTime((prevTime) => prevTime + 10);
+    }, 10);
     return () => clearInterval(interval);
-  }, [running]);
+  }, []);
 
   return (
     <>

@@ -9,9 +9,10 @@ function Progress() {
 
   useEffect(() => {
     if (total > 0) {
-      const elapsed = total - remaining; 
+      const elapsed = total - remaining;
       const percentage = Math.max(0, Math.min(100, (elapsed / total) * 100));
       setVal(percentage);
+      console.log(percentage);
     } else {
       setVal(0);
     }
