@@ -43,8 +43,6 @@ export const CountdownProvider = ({ children }) => {
     const prevRemaining = localStorage.getItem("remaining");
     if (prevRemaining || prevRemaining > 0) {
       setRemaining(Number(prevRemaining));
-      // setRunning(true);
-      // setStart(true);
     }
   }, []);
 

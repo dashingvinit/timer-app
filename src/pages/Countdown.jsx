@@ -1,4 +1,5 @@
 import { useCountdown } from "../context/useCountdownContext";
+import { useCountdownReducerHook } from "../context/useCountdownReducerContext";
 import { Timer, Progress, Input } from "../components/countdown";
 import Buttons from "../components/Buttons";
 import "../css/timer.css";
@@ -21,9 +22,17 @@ function Countdown() {
     onReset,
   } = useCountdown();
 
+  // const {onStart} = useCountdownReducerHook()
+
   return (
     <div className="container">
-      <div className="countdown-container" style={{ backgroundColor: bgColor }}>
+      <div
+        className="countdown-container"
+        style={{
+          backgroundColor: bgColor,
+          transition: "background-color 0.5s ease-in-out",
+        }}
+      >
         <h1 className="title">Timer</h1>
         <Timer
           time={time}

@@ -7,7 +7,8 @@ function Buttons(props) {
     switch (event.key.toLowerCase()) {
       case " ":
         event.preventDefault();
-        setRunning(!running);
+        if (running) setRunning(!running);
+        else onStart();
         break;
 
       case "r":
@@ -34,9 +35,13 @@ function Buttons(props) {
     <div className="btn-container">
       {running ? (
         <>
-          {onLap && (
+          {onLap ? (
             <button className="lap-btn" onClick={onLap}>
               Lap
+            </button>
+          ) : (
+            <button className="reset-btn" onClick={onReset}>
+              Reset
             </button>
           )}
           <button className="pause-btn" onClick={() => setRunning(false)}>

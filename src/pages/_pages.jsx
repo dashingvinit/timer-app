@@ -4,16 +4,20 @@ import Stopwatch from "./Stopwatch";
 
 import { StopwatchProvider } from "../context/useStopwatchContext";
 import { CountdownProvider } from "../context/useCountdownContext";
+import { CountdownProviderTest } from "../context/useCountdownReducerContext";
+
 function Pages() {
   return (
-    <StopwatchProvider>
-      <CountdownProvider>
-        <Routes>
-          <Route path="/stopwatch" element={<Stopwatch />} />
-          <Route path="/" element={<Countdown />} />
-        </Routes>
-      </CountdownProvider>
-    </StopwatchProvider>
+    <CountdownProviderTest>
+      <StopwatchProvider>
+        <CountdownProvider>
+          <Routes>
+            <Route path="/stopwatch" element={<Stopwatch />} />
+            <Route path="/" element={<Countdown />} />
+          </Routes>
+        </CountdownProvider>
+      </StopwatchProvider>
+    </CountdownProviderTest>
   );
 }
 
